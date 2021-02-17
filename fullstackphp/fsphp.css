@@ -1,7 +1,9 @@
 /**
 Full Stack PHP Developer Console CSS
  */
-@import url('https://fonts.googleapis.com/css?family=Open+sans|Source+Code+Pro');
+/* @import url('https://fonts.googleapis.com/css?family=Open+sans|Source+Code+Pro'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
 
 :root {
     --fsphp: #1F2026;
@@ -15,11 +17,12 @@ Full Stack PHP Developer Console CSS
 * {
     margin: 0;
     padding: 0;
+
+    font-family: 'Fira Mono', monospace;
 }
 
 body {
     padding: 3%;
-    font-family: "Source Code Pro", serif;
     padding: 20px 20px 50px 20px;
     overflow-x: hidden;
     color: #333333;
@@ -49,7 +52,6 @@ p {
 }
 
 .tag {
-    font-family: "Source Code Pro", serif;
     font-size: 0.75rem;
     color: #FFFFFF;
     display: inline-block;
@@ -76,7 +78,6 @@ p {
 .trigger small {
     display: block;
     margin-top: 7px;
-    font-family: "Source Code Pro", serif;
     font-size: 0.75em;
 }
 
@@ -96,7 +97,6 @@ p {
 }
 
 .code {
-    font-family: "Source Code Pro", serif;
     font-size: 0.8rem;
     background: var(--fsline);
     color: #FFFFFF;
@@ -197,7 +197,6 @@ form button:hover {
 }
 
 .xdebug-var-dump * {
-    font-family: "Source Code Pro", serif;
     font-size: 0.8em;
     margin: 0;
 }
