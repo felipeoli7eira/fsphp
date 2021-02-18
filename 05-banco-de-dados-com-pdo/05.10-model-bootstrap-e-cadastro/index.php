@@ -9,13 +9,13 @@ require __DIR__ . "/../source/autoload.php";
  */
 fullStackPHPClassSession("bootstrap", __LINE__);
 
-$model = new \Source\Models\UserModel();
+$model = new Source\Models\User();
 
 $user = $model->bootstrap(
-    "Robson",
-    "Leite",
-    "cursos5@upinside.com.br",
-    34892493349
+    'felipe',
+    'oliveira',
+    'felipe@webart.com.br',
+    '03364266239'
 );
 
 var_dump($user);
@@ -26,13 +26,18 @@ var_dump($user);
  */
 fullStackPHPClassSession("save create", __LINE__);
 
-if (!$model->find($user->email)) {
-    echo "<p class='trigger warning'>Cadastro</p>";
+// $user->email = 'null';
+
+if (! $user->find($user->email)) # sidney38@email.com.br
+{
+    echo "<p class=\"trigger warning\">Cadastro</p>";
     $user->save();
-} else {
-    echo "<p class='trigger accept'>Read</p>";
-    $user = $model->find($user->email);
+}
+else
+{
+    echo "<p class=\"trigger accept\">Read</p>";
+
+    $user = $model->find( $user->email);
 }
 
 var_dump($user);
-

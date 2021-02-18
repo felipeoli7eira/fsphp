@@ -9,19 +9,22 @@ require __DIR__ . "/../source/autoload.php";
  */
 fullStackPHPClassSession("load", __LINE__);
 
-$model = new \Source\Models\UserModel();
+$load = new Source\Models\User();
 
-$user = $model->load(1);
+$user = $load->load(1);
+
 var_dump($user, "{$user->first_name} {$user->last_name}");
-
 
 /*
  * [ find ] Por indexes da tabela (email)
  */
 fullStackPHPClassSession("find", __LINE__);
 
-$user = $model->find("mateus31@email.com.br");
-var_dump($user, "{$user->first_name} {$user->last_name}");
+$find = new Source\Models\User();
+
+$email = $find->find('alexandre27@email.com.br');
+
+var_dump($email);
 
 
 /*
@@ -29,10 +32,11 @@ var_dump($user, "{$user->first_name} {$user->last_name}");
  */
 fullStackPHPClassSession("all", __LINE__);
 
-$all = $model->all(5);
+$model = new Source\Models\User();
 
-/** @var \Source\Models\UserModel $user */
-foreach ($all as $user) {
-    var_dump($user, "{$user->first_name} {$user->last_name}");
+$all = $model->all(3, 1, 'first_name');
+
+foreach($all as $index => $data)
+{
+    var_dump($data->first_name);
 }
-
