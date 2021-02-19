@@ -113,9 +113,38 @@
             }
         }
 
-        protected function update()
+        protected function update(string $entity, array $data, string $terms, string $params): ?int
         {
-            
+            try
+            {
+                $arrayLinks = [];
+
+                foreach ($data as $columnName => $value)
+                {
+                    $arrayLinks[] = "{$columnName} = :{$columnName}";
+                }
+
+                $strLinks = implode(", ", $arrayLinks);
+
+                $updateQueryString = "UPDATE {$entity} SET {$strLinks} WHERE {$terms}";
+
+                parse_str($params, $params);
+
+                $stmt = Connect::getInstance()->prepare($updateQueryString);
+
+                $stmt->execute(
+                    $this->filter(
+                        array_merge($data, $params)
+                    )
+                );
+
+                return $stmt->rowCount() ?? 1;
+            }
+            catch (PDOException $exception)
+            {
+                $this->fail = $exception;
+                return null;
+            }
         }
 
         protected function delete()

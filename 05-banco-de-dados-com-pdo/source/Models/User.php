@@ -71,6 +71,23 @@
             if ( !empty($this->id)) # Update
             {
                 $userID = $this->id;
+
+                $emailExists = $this->read("SELECT id from " . self::$entity . " WHERE email = :email AND id != :id", "email={$this->email}&id={$userID}");
+
+                if ($emailExists->rowCount())
+                {
+                    $this->message = 'O e-mail informado já está cadastrado';
+                    return null;
+                }
+
+                $this->update(self::$entity, $this->safe(), "id = :id", "id={$userID}");
+
+                if ($this->fail())
+                {
+                    $this->message = 'Erro ao atualizar, verifique os dados';
+                }
+
+                $this->message = 'Recurso atualizado';
             }
 
 
