@@ -114,9 +114,23 @@
             return $this;
         }
 
-        public function destroy()
+        public function destroy(): ?User
         {
-            
+            if (! empty($this->id))
+            {
+                $this->delete(self::$entity, 'id = :id', "id={$this->id}");
+            }
+
+            if ($this->fail())
+            {
+                $this->message = 'Erro ao deletar recurso';
+                return null;
+            }
+
+            $this->message = 'Recurso deletado';
+            $this->data = null;
+
+            return $this;
         }
 
         private function required(): bool

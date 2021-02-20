@@ -11,7 +11,12 @@ fullStackPHPClassSession("destroy", __LINE__);
 
 $model = new \Source\Models\User();
 
-$user = $model->load(2);
+$user = $model->load(4);
+
+if ($user)
+{
+    $user->destroy();
+}
 
 var_dump($user);
 

@@ -62,7 +62,13 @@
         {
             return $this->message;
         }
-
+        
+        /**
+         * @param string $entity [table name]
+         * @param array $data [values for insert on the table]
+         *
+         * @return null|int
+         */
         protected function create(string $entity, array $data): ?int
         {
             try
@@ -84,7 +90,13 @@
                 return null;
             }
         }
-
+        
+        /**
+         * @param string $query [SELECT query]
+         * @param string $params [params for mout the query]
+         *
+         * @return null|PDOStatement
+         */
         protected function read(string $query, string $params = null): ?\PDOStatement
         {
             try
@@ -112,7 +124,15 @@
                 return null;
             }
         }
-
+        
+        /**
+         * @param string $entity [table name]
+         * @param array $data [values for update]
+         * @param string $terms [WHERE clousure]
+         * @param string $params [bind values]
+         *
+         * @return null|int
+         */
         protected function update(string $entity, array $data, string $terms, string $params): ?int
         {
             try
@@ -146,12 +166,34 @@
                 return null;
             }
         }
-
-        protected function delete()
+        
+        /**
+         * @param string $entity []
+         * @param string $terms []
+         * @param string $params []
+         *
+         * @return null|int
+         */
+        protected function delete(string $entity, string $terms, string $params): ?int
         {
-            
-        }
+            try
+            {
+                $stmt = Connect::getInstance()->prepare("DELETE FROM {$entity} WHERE {$terms}");
+                parse_str($params, $params);
+                $stmt->execute($params);
 
+                return $stmt->rowCount() ?? 1;
+            }
+            catch (PDOException $exception)
+            {
+                $this->fail = $exception;
+                return null;
+            }
+        }
+        
+        /**
+         * @return null|array
+         */
         protected function safe(): ?array
         {
             $arrayData = (array) $this->data;
@@ -164,6 +206,9 @@
             return $arrayData;
         }
 
+        /**
+         * @return null|array
+         */
         protected function filter(array $data): ?array
         {
             $filter = [];
