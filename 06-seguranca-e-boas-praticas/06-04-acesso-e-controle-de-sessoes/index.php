@@ -8,3 +8,23 @@ require __DIR__ . "/../source/autoload.php";
  * [ session ] Uma classe statless para manipulação de sessões
  */
 fullStackPHPClassSession("session", __LINE__);
+
+$session = new Source\Core\Session();
+
+// $session->set('user', 1);
+// $session->set('status', 'send');
+// $session->regenerate();
+
+// if (!$session->has('login'))
+// {
+//     echo "<p>Logar-se</p>";
+//     $user = (new Source\Models\User)->load(1);
+
+//     $session->set('login', $user->data());
+// }
+
+$session->destroy();
+
+var_dump(
+    $session->all()
+);
