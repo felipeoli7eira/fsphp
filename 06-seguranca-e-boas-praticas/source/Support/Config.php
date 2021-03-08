@@ -12,7 +12,8 @@
     /**
      * PROJECT URL's
     */
-    define('CONF_URL_BASE', 'http://localhost/fsphp');
+    // define('CONF_URL_BASE', 'http://localhost/fsphp');
+    define('CONF_URL_BASE', 'http://localhost/fsphp/06-seguranca-e-boas-praticas/06-08-camada-de-manipulacao-pt3');
     define('CONF_URL_ADMIN', CONF_URL_BASE . '/admin');
     define('CONF_URL_ERROR', CONF_URL_BASE . '/404');
 
@@ -26,6 +27,15 @@
      * SESSION
     */
     define('CONF_SESSION_PATH', __DIR__ . '/../../storage/session');
+
+    /**
+     * PASSWORD
+    */
+
+    define('CONF_PASSWORD_MIN_LENGTH', 8);
+    define('CONF_PASSWORD_MAX_LENGTH', 40);
+    define('CONF_PASSWORD_ALGO', PASSWORD_DEFAULT);
+    define('CONF_PASSWORD_OPTIONS', ['cost' => 10]);
 
     /**
      * MESSAGE

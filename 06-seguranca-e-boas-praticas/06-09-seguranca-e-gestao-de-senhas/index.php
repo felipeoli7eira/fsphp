@@ -9,6 +9,17 @@ require __DIR__ . "/../source/autoload.php";
  */
 fullStackPHPClassSession("password hashing", __LINE__);
 
+$password = password_hash(12345, PASSWORD_DEFAULT);
+
+var_dump($password);
+
+var_dump(
+    [
+        password_get_info($password),
+        password_needs_rehash($password, PASSWORD_DEFAULT),
+        password_verify(12345, $password)
+    ]
+);
 
 /*
  * [ password saving ] Rotina de cadastro/atualização de senha
@@ -26,3 +37,6 @@ fullStackPHPClassSession("password verify", __LINE__);
  * [ password handler ] Sintetizando uso de senhas
  */
 fullStackPHPClassSession("password handler", __LINE__);
+
+
+var_dump(passwd('felipe'));

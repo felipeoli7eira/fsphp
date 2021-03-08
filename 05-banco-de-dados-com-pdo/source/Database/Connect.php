@@ -21,9 +21,7 @@ class Connect
 
     private static $instance;
 
-    /**
-     * @return PDO
-     */
+    /** @return PDO */
     public static function getInstance(): PDO
     {
         if (is_null(self::$instance)) {
